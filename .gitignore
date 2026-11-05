@@ -4,3 +4,6 @@ site/cursor-swarm.js
 test-results/
 *.log
 .DS_Store
+site/r/
+site/og.png
+.hoplite/

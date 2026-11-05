@@ -6,12 +6,15 @@
 
 One web component, zero dependencies, about 9 kB gzipped. Works with plain HTML, React, Next.js, Vue, Svelte and Astro.
 
-[![npm](https://img.shields.io/npm/v/cursor-swarm?color=7C5CFF)](https://www.npmjs.com/package/cursor-swarm)
-[![gzip size](https://img.shields.io/bundlejs/size/cursor-swarm?color=14B8A6)](https://bundlejs.com/?q=cursor-swarm)
-[![license](https://img.shields.io/badge/license-MIT-FF4F8B)](LICENSE)
-[![stars](https://img.shields.io/github/stars/Ricco-Mallick/Swarm-Cursor-component?style=social)](https://github.com/Ricco-Mallick/Swarm-Cursor-component)
+<a href="LICENSE"><img src="media/badges/license.svg" alt="License: MIT" height="22"></a>
+<img src="media/badges/deps.svg" alt="Zero dependencies" height="22">
+<img src="media/badges/size.svg" alt="About 9 kB gzipped" height="22">
+<img src="media/badges/frameworks.svg" alt="Works with HTML, React, Vue and Svelte" height="22">
+<a href="#shadcn-ui"><img src="media/badges/shadcn.svg" alt="shadcn registry" height="22"></a>
 
-[**Live demo & playground →**](https://ricco-mallick.github.io/Swarm-Cursor-component/)
+### [**Live demo & playground →**](https://ricco.codes/Swarm-Cursor-component/)
+
+If you like it, a ⭐ helps other developers find it.
 
 ![cursor-swarm building a landing page](https://raw.githubusercontent.com/Ricco-Mallick/Swarm-Cursor-component/main/media/demo.gif)
 
@@ -38,7 +41,23 @@ It reads your real DOM and CSS, so you don't need any config, extra markup or sc
 
 > Tip: add `cursor-swarm:not(:defined) { visibility: hidden; }` to your CSS so content doesn't flash before the script loads.
 
-### React / Next.js
+### shadcn/ui
+
+Copy the component straight into your project, so you own the code and can edit it:
+
+```bash
+npx shadcn@latest add https://ricco.codes/Swarm-Cursor-component/r/cursor-swarm.json
+```
+
+```tsx
+import { CursorSwarm } from '@/components/cursor-swarm/cursor-swarm';
+
+<CursorSwarm cursors={6} trigger="load">
+  <h1>Hello, world</h1>
+</CursorSwarm>
+```
+
+### React / Next.js (npm)
 
 ```bash
 npm i cursor-swarm
@@ -122,13 +141,17 @@ If the user prefers reduced motion, content is shown immediately and nothing ani
 - Open shadow roots inside your content are revealed as one block (`media`), not typed.
 - Very large pages are capped at 800 animated elements by default (`max-tasks` attribute).
 
-## Development
+## Contributing
+
+cursor-swarm is free and open source, and contributions are very welcome. Bug reports, new build effects, framework examples and docs fixes all help. See [CONTRIBUTING.md](CONTRIBUTING.md) to get started:
 
 ```bash
 npm install
 npm run dev     # builds and serves the demo site at http://localhost:4173
 npm test        # end-to-end tests in headless Chrome (set CHROME_PATH if needed)
 ```
+
+Built something with it? Open an issue or PR to add it to a showcase.
 
 ## Credits
 

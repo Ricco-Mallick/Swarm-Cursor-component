@@ -1,0 +1,26 @@
+name: Bug report
+description: Something doesn't build, look or behave right
+labels: [bug]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: What did you expect, and what did you see instead? Screenshots or recordings help a lot.
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Minimal reproduction
+      description: The HTML/JSX inside `<cursor-swarm>`, or a link to a CodePen/StackBlitz.
+      render: html
+    validations:
+      required: true
+  - type: input
+    id: env
+    attributes:
+      label: Browser, framework and cursor-swarm version
+      placeholder: Chrome 131, Next.js 15, cursor-swarm 0.1.0
+    validations:
+      required: true
