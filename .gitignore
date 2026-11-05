@@ -1,0 +1,6 @@
+node_modules/
+dist/
+site/cursor-swarm.js
+test-results/
+*.log
+.DS_Store

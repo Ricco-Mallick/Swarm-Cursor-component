@@ -1,0 +1,47 @@
+{
+  "name": "cursor-swarm",
+  "version": "0.1.0",
+  "description": "A drop-in web component where a crowd of multiplayer cursors builds your UI live. Works with plain HTML, React, Vue, Svelte, Astro and more.",
+  "type": "module",
+  "main": "./dist/cursor-swarm.js",
+  "module": "./dist/cursor-swarm.js",
+  "types": "./dist/cursor-swarm.d.ts",
+  "unpkg": "./dist/cursor-swarm.iife.js",
+  "jsdelivr": "./dist/cursor-swarm.iife.js",
+  "exports": {
+    ".": {
+      "types": "./dist/cursor-swarm.d.ts",
+      "default": "./dist/cursor-swarm.js"
+    },
+    "./react": {
+      "types": "./dist/react.d.ts",
+      "default": "./dist/react.js"
+    },
+    "./iife": "./dist/cursor-swarm.iife.js",
+    "./package.json": "./package.json"
+  },
+  "files": ["dist", "README.md", "LICENSE"],
+  "sideEffects": ["./dist/cursor-swarm.js", "./dist/cursor-swarm.iife.js", "./dist/react.js"],
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "dev": "node scripts/build.mjs && node scripts/serve.mjs",
+    "test": "node scripts/build.mjs && node --test test/*.test.js",
+    "prepublishOnly": "npm run build"
+  },
+  "peerDependencies": {
+    "react": ">=17"
+  },
+  "peerDependenciesMeta": {
+    "react": { "optional": true }
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.0",
+    "playwright-core": "^1.55.0"
+  },
+  "keywords": ["web-component", "custom-element", "cursor", "multiplayer", "animation", "react", "ui", "landing-page", "figma", "collaboration"],
+  "repository": { "type": "git", "url": "git+https://github.com/Ricco-Mallick/Swarm-Cursor-component.git" },
+  "homepage": "https://ricco-mallick.github.io/Swarm-Cursor-component/",
+  "bugs": "https://github.com/Ricco-Mallick/Swarm-Cursor-component/issues",
+  "author": "Ricco Mallick",
+  "license": "MIT"
+}

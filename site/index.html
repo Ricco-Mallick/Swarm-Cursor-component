@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>cursor-swarm · a crowd of cursors builds your UI, live</title>
+  <meta name="description" content="A drop-in web component where a swarm of multiplayer cursors draws, types and assembles your page in front of your visitors. Works with HTML, React, Vue, Svelte and Astro." />
+  <meta property="og:title" content="cursor-swarm" />
+  <meta property="og:description" content="A crowd of multiplayer cursors builds your UI, live. One web component, zero dependencies." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3.5 2.5 L3.5 19.2 L8.1 15.1 L11.2 21.8 L14.3 20.4 L11.3 13.8 L17.6 13.8 Z' fill='%237C5CFF' stroke='white' stroke-width='1.6' stroke-linejoin='round'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    cursor-swarm:not(:defined) { visibility: hidden; }
+    :root {
+      --bg: #fbfbfd; --fg: #0b0b12; --muted: #5d5f6e; --line: #e7e7ee; --card: #ffffff; --soft: #f3f3f8;
+      --accent: #7C5CFF; --accent-2: #FF4F8B; --code: #0f1020; --radius: 16px;
+      --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--bg); color: var(--fg); font: 16px/1.6 Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; }
+    .wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+    .grid-bg { position: absolute; inset: 0; z-index: -1; background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px); background-size: 48px 48px; mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, #000 30%, transparent 75%); opacity: .7; }
+
+    nav { position: sticky; top: 0; z-index: 10; backdrop-filter: saturate(1.6) blur(12px); background: color-mix(in srgb, var(--bg) 78%, transparent); border-bottom: 1px solid var(--line); }
+    nav .wrap { display: flex; align-items: center; gap: 28px; height: 60px; }
+    .logo { display: flex; align-items: center; gap: 8px; font-weight: 700; letter-spacing: -.02em; text-decoration: none; }
+    nav .links { display: flex; gap: 22px; margin-left: auto; font-size: 14px; color: var(--muted); }
+    nav .links a { text-decoration: none; } nav .links a:hover { color: var(--fg); }
+    .btn { display: inline-flex; align-items: center; gap: 8px; height: 42px; padding: 0 18px; border-radius: 11px; font: 600 14px/1 Inter, sans-serif; text-decoration: none; border: 1px solid var(--line); background: var(--card); color: var(--fg); cursor: pointer; transition: transform .15s ease, box-shadow .15s ease; }
+    .btn:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(20,20,40,.08); }
+    .btn.primary { background: var(--fg); color: #fff; border-color: var(--fg); }
+    .btn.sm { height: 34px; padding: 0 12px; font-size: 13px; border-radius: 9px; }
+
+    header.hero { position: relative; padding: 96px 0 72px; text-align: center; overflow: hidden; }
+    .pill { display: inline-flex; align-items: center; gap: 8px; padding: 5px 12px 5px 6px; border: 1px solid var(--line); border-radius: 999px; background: var(--card); font-size: 13px; color: var(--muted); box-shadow: 0 1px 2px rgba(0,0,0,.04); }
+    .pill b { padding: 2px 8px; border-radius: 999px; background: color-mix(in srgb, var(--accent) 12%, white); color: var(--accent); font-weight: 600; font-size: 12px; }
+    h1 { font-size: clamp(40px, 7vw, 76px); line-height: 1.02; letter-spacing: -.045em; margin: 22px auto 18px; max-width: 900px; font-weight: 800; }
+    .grad { background: linear-gradient(92deg, var(--accent), var(--accent-2) 60%, #F59E0B); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .lead { font-size: 19px; color: var(--muted); max-width: 640px; margin: 0 auto 32px; }
+    .ctas { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .install { display: inline-flex; align-items: center; gap: 12px; margin-top: 28px; padding: 10px 10px 10px 16px; border-radius: 12px; background: var(--code); color: #e6e6f0; font: 14px var(--mono); }
+    .install span { color: #8b8da3; }
+    .install button { border: 0; border-radius: 8px; background: #23243a; color: #cfd0e0; font: 600 12px Inter, sans-serif; padding: 6px 10px; cursor: pointer; }
+
+    section { padding: 72px 0; }
+    .eyebrow { font: 600 12px var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--accent); }
+    h2 { font-size: clamp(30px, 4vw, 44px); letter-spacing: -.035em; line-height: 1.1; margin: 10px 0 14px; }
+    .sub { color: var(--muted); max-width: 620px; margin: 0 0 36px; font-size: 17px; }
+
+    /* playground */
+    .play { display: grid; grid-template-columns: 1fr 300px; gap: 20px; }
+    .stage { position: relative; border: 1px solid var(--line); border-radius: 20px; background: var(--soft); padding: 32px; min-height: 460px; }
+    .controls { border: 1px solid var(--line); border-radius: 20px; background: var(--card); padding: 22px; display: flex; flex-direction: column; gap: 18px; align-self: start; }
+    .controls label { display: flex; justify-content: space-between; font-size: 13px; font-weight: 600; }
+    .controls label output { font: 500 12px var(--mono); color: var(--muted); }
+    .controls input[type=range] { width: 100%; accent-color: var(--accent); }
+    .toggle { display: flex; align-items: center; justify-content: space-between; font-size: 13px; font-weight: 600; }
+    .toggle input { width: 36px; height: 20px; accent-color: var(--accent); }
+    .row { display: flex; gap: 8px; }
+    .row .btn { flex: 1; justify-content: center; }
+
+    /* mock dashboard used by the playground */
+    .mock { display: grid; grid-template-columns: 180px 1fr; gap: 18px; }
+    .side { background: #11121f; color: #c9cadb; border-radius: 14px; padding: 18px 14px; display: flex; flex-direction: column; gap: 6px; font-size: 13px; }
+    .side .brand { display: flex; align-items: center; gap: 8px; color: #fff; font-weight: 700; margin-bottom: 14px; }
+    .dot { width: 22px; height: 22px; border-radius: 7px; background: linear-gradient(135deg, var(--accent), var(--accent-2)); }
+    .side a { padding: 7px 10px; border-radius: 8px; text-decoration: none; }
+    .side a.on { background: #23243a; color: #fff; }
+    .main { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+    .top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .top h3 { margin: 0; font-size: 22px; letter-spacing: -.02em; }
+    .avatars { display: flex; }
+    .avatars img { width: 30px; height: 30px; border-radius: 50%; border: 2px solid var(--soft); margin-left: -8px; }
+    .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .stat { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; }
+    .stat p { margin: 0; font-size: 12px; color: var(--muted); }
+    .stat strong { display: block; font-size: 24px; letter-spacing: -.03em; margin-top: 2px; }
+    .stat small { color: #16a34a; font-weight: 600; font-size: 12px; }
+    .chart { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 16px; }
+    .chart h4 { margin: 0 0 10px; font-size: 14px; }
+    .chart svg { width: 100%; height: 120px; display: block; }
+    .list { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 6px 16px; }
+    .item { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--line); font-size: 14px; }
+    .item:last-child { border-bottom: 0; }
+    .tagx { margin-left: auto; font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: 999px; background: #ecfdf5; color: #059669; }
+    .tagx.w { background: #fff7ed; color: #ea580c; }
+
+    /* code tabs */
+    .tabs { border: 1px solid var(--line); border-radius: 18px; overflow: hidden; background: var(--code); }
+    .tabbar { display: flex; gap: 4px; padding: 10px; border-bottom: 1px solid #22233a; }
+    .tabbar button { border: 0; background: transparent; color: #8b8da3; font: 600 13px Inter, sans-serif; padding: 7px 12px; border-radius: 8px; cursor: pointer; }
+    .tabbar button[aria-selected=true] { background: #23243a; color: #fff; }
+    .tabbar .copy { margin-left: auto; }
+    pre { margin: 0; padding: 22px 24px; overflow: auto; color: #e6e6f0; font: 13.5px/1.7 var(--mono); }
+    pre .c { color: #6b6d85; } pre .k { color: #c4a7ff; } pre .s { color: #8ee6c4; } pre .t { color: #ff9cbf; } pre .a { color: #ffd38a; }
+
+    /* features */
+    .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .feature { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; }
+    .feature .ic { width: 38px; height: 38px; border-radius: 10px; display: grid; place-items: center; margin-bottom: 14px; background: color-mix(in srgb, var(--accent) 10%, white); color: var(--accent); }
+    .feature h3 { margin: 0 0 6px; font-size: 16px; letter-spacing: -.01em; }
+    .feature p { margin: 0; color: var(--muted); font-size: 14px; }
+
+    /* api */
+    table { width: 100%; border-collapse: collapse; font-size: 14px; background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+    th, td { text-align: left; padding: 12px 16px; border-bottom: 1px solid var(--line); vertical-align: top; }
+    th { font-size: 12px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); background: var(--soft); }
+    td code { font: 13px var(--mono); background: var(--soft); padding: 2px 6px; border-radius: 6px; }
+    h3.api { margin: 36px 0 12px; font-size: 18px; }
+
+    footer { border-top: 1px solid var(--line); padding: 36px 0 60px; color: var(--muted); font-size: 14px; }
+    footer .wrap { display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+
+    @media (max-width: 860px) {
+      .play { grid-template-columns: 1fr; }
+      .mock { grid-template-columns: 1fr; } .side { display: none; }
+      .features { grid-template-columns: 1fr; }
+      nav .links { display: none; }
+      .stats { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+  <script type="module" src="./cursor-swarm.js"></script>
+</head>
+<body>
+  <nav data-swarm-ignore>
+    <div class="wrap">
+      <a class="logo" href="#"><svg width="20" height="20" viewBox="0 0 24 24"><path d="M3.5 2.5 L3.5 19.2 L8.1 15.1 L11.2 21.8 L14.3 20.4 L11.3 13.8 L17.6 13.8 Z" fill="#7C5CFF" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/></svg>cursor-swarm</a>
+      <div class="links"><a href="#playground">Playground</a><a href="#install">Install</a><a href="#api">API</a></div>
+      <a class="btn sm" href="https://github.com/Ricco-Mallick/Swarm-Cursor-component" target="_blank" rel="noopener">★ Star on GitHub</a>
+    </div>
+  </nav>
+
+  <cursor-swarm id="hero" trigger="load" scope="all" cursors="6" linger="3000">
+    <header class="hero">
+      <div class="grid-bg"></div>
+      <div class="wrap">
+        <span class="pill"><b>New</b> One web component · zero dependencies</span>
+        <h1>Let a swarm of cursors <span class="grad">build your UI</span>, live.</h1>
+        <p class="lead">Wrap any section in <code>&lt;cursor-swarm&gt;</code> and a crowd of multiplayer cursors draws the boxes, types the text and drops in the images, right in front of your visitors.</p>
+        <div class="ctas">
+          <a class="btn primary" href="#install">Get started →</a>
+          <button class="btn" id="hero-replay" type="button">↻ Replay</button>
+        </div>
+        <div class="install"><span>$</span> npm i cursor-swarm <button type="button" data-copy="npm i cursor-swarm">Copy</button></div>
+      </div>
+    </header>
+  </cursor-swarm>
+
+  <section id="playground">
+    <div class="wrap">
+      <div class="eyebrow">Playground</div>
+      <h2>Tweak it. Replay it.</h2>
+      <p class="sub">Every option is a plain HTML attribute. Change something and press replay, and the snippet below updates to match.</p>
+      <div class="play">
+        <div class="stage">
+          <cursor-swarm id="pg" trigger="visible" scope="all">
+            <div class="mock">
+              <aside class="side">
+                <div class="brand"><span class="dot"></span>Orbit</div>
+                <a class="on" href="#playground">Overview</a>
+                <a href="#playground">Projects</a>
+                <a href="#playground">Team</a>
+                <a href="#playground">Billing</a>
+                <a href="#playground">Settings</a>
+              </aside>
+              <div class="main">
+                <div class="top">
+                  <h3>Good morning, Sam</h3>
+                  <div class="avatars">
+                    <img alt="" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' fill='%23FFB4C8'/%3E%3Ccircle cx='20' cy='16' r='7' fill='%23fff'/%3E%3Cellipse cx='20' cy='36' rx='13' ry='10' fill='%23fff'/%3E%3C/svg%3E" />
+                    <img alt="" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' fill='%23A5B4FC'/%3E%3Ccircle cx='20' cy='16' r='7' fill='%23fff'/%3E%3Cellipse cx='20' cy='36' rx='13' ry='10' fill='%23fff'/%3E%3C/svg%3E" />
+                    <img alt="" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' fill='%2399F6E4'/%3E%3Ccircle cx='20' cy='16' r='7' fill='%23fff'/%3E%3Cellipse cx='20' cy='36' rx='13' ry='10' fill='%23fff'/%3E%3C/svg%3E" />
+                  </div>
+                </div>
+                <div class="stats">
+                  <div class="stat"><p>Revenue</p><strong>$48.2k</strong><small>+12.4%</small></div>
+                  <div class="stat"><p>Active users</p><strong>9,184</strong><small>+3.1%</small></div>
+                  <div class="stat"><p>Conversion</p><strong>4.73%</strong><small>+0.8%</small></div>
+                </div>
+                <div class="chart">
+                  <h4>Weekly signups</h4>
+                  <svg viewBox="0 0 400 120" preserveAspectRatio="none"><defs><linearGradient id="g" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#7C5CFF" stop-opacity=".35"/><stop offset="1" stop-color="#7C5CFF" stop-opacity="0"/></linearGradient></defs><path d="M0 95 C40 80 60 88 90 70 S150 40 190 52 S260 20 300 30 S360 12 400 8 L400 120 L0 120Z" fill="url(#g)"/><path d="M0 95 C40 80 60 88 90 70 S150 40 190 52 S260 20 300 30 S360 12 400 8" fill="none" stroke="#7C5CFF" stroke-width="2.5"/></svg>
+                </div>
+                <div class="list">
+                  <div class="item"><span>Landing page redesign</span><span class="tagx">Shipped</span></div>
+                  <div class="item"><span>Onboarding emails</span><span class="tagx w">In review</span></div>
+                </div>
+              </div>
+            </div>
+          </cursor-swarm>
+        </div>
+        <div class="controls">
+          <div><label for="c-cursors">Cursors <output id="o-cursors">5</output></label><input id="c-cursors" type="range" min="1" max="12" value="5" /></div>
+          <div><label for="c-speed">Speed <output id="o-speed">1×</output></label><input id="c-speed" type="range" min="0.5" max="3" step="0.25" value="1" /></div>
+          <div><label for="c-linger">Linger <output id="o-linger">2500ms</output></label><input id="c-linger" type="range" min="0" max="6000" step="500" value="2500" /></div>
+          <div class="toggle">Sound <input id="c-sound" type="checkbox" /></div>
+          <div class="toggle">Name tags <input id="c-labels" type="checkbox" checked /></div>
+          <div class="row"><button class="btn primary" id="pg-replay" type="button">↻ Replay</button><button class="btn" id="pg-finish" type="button">Skip</button></div>
+        </div>
+      </div>
+      <div class="tabs" style="margin-top:20px"><div class="tabbar"><button aria-selected="true" type="button">Your snippet</button><button class="copy" type="button" data-copy-from="pg-code">Copy</button></div><pre id="pg-code"></pre></div>
+    </div>
+  </section>
+
+  <section id="install">
+    <div class="wrap">
+      <div class="eyebrow">Install</div>
+      <h2>Works wherever HTML works.</h2>
+      <p class="sub">It's a standard custom element, so plain HTML, React, Next.js, Vue, Svelte, Astro, Webflow and WordPress all work. There's also a small typed React wrapper.</p>
+      <div class="tabs" id="code-tabs">
+        <div class="tabbar">
+          <button type="button" aria-selected="true" data-tab="html">HTML / CDN</button>
+          <button type="button" aria-selected="false" data-tab="react">React / Next.js</button>
+          <button type="button" aria-selected="false" data-tab="vue">Vue</button>
+          <button type="button" aria-selected="false" data-tab="svelte">Svelte / Astro</button>
+          <button class="copy" type="button" data-copy-from="code-out">Copy</button>
+        </div>
+        <pre id="code-out"></pre>
+      </div>
+    </div>
+  </section>
+
+  <cursor-swarm cursors="5">
+    <section>
+      <div class="wrap">
+        <div class="eyebrow">Why</div>
+        <h2>Small, polite, and a little bit magic.</h2>
+        <p class="sub">This section builds as you scroll to it. That's the default <code>scope="viewport"</code>: the cursors keep pace with the reader.</p>
+        <div class="features">
+          <div class="feature"><div class="ic">⌁</div><h3>Zero dependencies</h3><p>One small ES module. Load it from a CDN with a single script tag.</p></div>
+          <div class="feature"><div class="ic">⬚</div><h3>Reads your real DOM</h3><p>No config needed. Boxes are drawn, text is typed line by line and images wipe in, all using your own CSS.</p></div>
+          <div class="feature"><div class="ic">↯</div><h3>Keeps up with scrolling</h3><p>Cursors speed up when there's a backlog, so fast scrollers never wait long.</p></div>
+          <div class="feature"><div class="ic">♪</div><h3>Optional sound</h3><p>Soft clicks and keystrokes synthesized with Web Audio. No audio files, and off by default.</p></div>
+          <div class="feature"><div class="ic">◎</div><h3>Accessible by default</h3><p>Respects prefers-reduced-motion, never blocks clicks, and leaves your markup untouched.</p></div>
+          <div class="feature"><div class="ic">⚛</div><h3>Framework friendly</h3><p>Typed React wrapper and SSR safe. Events and methods let you control playback.</p></div>
+        </div>
+      </div>
+    </section>
+  </cursor-swarm>
+
+  <section id="api">
+    <div class="wrap">
+      <div class="eyebrow">API</div>
+      <h2>Attributes, methods, events.</h2>
+      <table>
+        <thead><tr><th>Attribute</th><th>Default</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><code>cursors</code></td><td><code>5</code></td><td>How many cursors join in (1–24).</td></tr>
+          <tr><td><code>speed</code></td><td><code>1</code></td><td>Build speed multiplier.</td></tr>
+          <tr><td><code>trigger</code></td><td><code>visible</code></td><td><code>visible</code> starts when scrolled into view, <code>load</code> starts immediately, and <code>manual</code> waits for <code>play()</code>.</td></tr>
+          <tr><td><code>scope</code></td><td><code>viewport</code></td><td><code>viewport</code> builds what's on screen as you scroll, and <code>all</code> builds everything right away.</td></tr>
+          <tr><td><code>linger</code></td><td><code>2500</code></td><td>Milliseconds the cursors flock around your pointer before leaving. Use <code>0</code> to leave right away or <code>infinite</code> to stay.</td></tr>
+          <tr><td><code>sound</code></td><td>off</td><td>Turns on synthesized clicks and typing sounds.</td></tr>
+          <tr><td><code>volume</code></td><td><code>0.4</code></td><td>Sound volume, from 0 to 1.</td></tr>
+          <tr><td><code>names</code></td><td>Ava, Kai, …</td><td>Comma-separated cursor names.</td></tr>
+          <tr><td><code>colors</code></td><td>8 colors</td><td>Comma-separated CSS colors.</td></tr>
+          <tr><td><code>hide-labels</code></td><td>off</td><td>Hides the name tags.</td></tr>
+          <tr><td><code>ignore-reduced-motion</code></td><td>off</td><td>Animates even when the user prefers reduced motion.</td></tr>
+        </tbody>
+      </table>
+      <h3 class="api">Per-element hints</h3>
+      <table>
+        <thead><tr><th>Attribute</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><code>data-swarm="text | box | block | media"</code></td><td>Forces how an element is built: typed, drawn as a container, drawn as one block, or wiped in.</td></tr>
+          <tr><td><code>data-swarm="skip"</code></td><td>Doesn't animate this element itself, but still animates its children.</td></tr>
+          <tr><td><code>data-swarm-ignore</code></td><td>Leaves this element and everything inside it untouched and always visible.</td></tr>
+        </tbody>
+      </table>
+      <h3 class="api">Methods &amp; events</h3>
+      <table>
+        <thead><tr><th>Name</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><code>play()</code></td><td>Starts building. Use it with <code>trigger="manual"</code>.</td></tr>
+          <tr><td><code>replay()</code></td><td>Hides everything and builds it again.</td></tr>
+          <tr><td><code>finish()</code></td><td>Skips to the end.</td></tr>
+          <tr><td><code>reset()</code></td><td>Reveals everything, removes the cursors and goes back to idle.</td></tr>
+          <tr><td><code>swarmstart</code> · <code>swarmcomplete</code> · <code>swarmend</code></td><td>Fired when building starts, when the last element is built, and when the cursors have left.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <span>MIT © Ricco Mallick · <a href="https://github.com/Ricco-Mallick/Swarm-Cursor-component">GitHub</a> · <a href="https://www.npmjs.com/package/cursor-swarm">npm</a></span>
+      <span>Inspired by <a href="https://califa.github.io/swarm-site/">Swarm</a> by Joel Califa and <a href="https://github.com/DhvanilPatel/swarm-cursors">Swarm Rebuild</a> by Dhvanil Patel. Independent implementation.</span>
+    </div>
+  </footer>
+
+  <script type="module">
+    const $ = (s) => document.querySelector(s);
+    const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    const hl = (src) => src.replace(
+      /(\/\/[^\n]*|<!--[\s\S]*?-->)|("[^"\n]*"|'[^'\n]*')|(<\/?)([\w-]+)|\b(import|from|export|default|function|return|const)\b|([&<>])/g,
+      (m, c, str, lt, tag, kw, ch) => c ? `<span class="c">${esc(c)}</span>` : str ? `<span class="s">${esc(str)}</span>` : tag ? `${esc(lt)}<span class="t">${tag}</span>` : kw ? `<span class="k">${kw}</span>` : esc(ch));
+
+    $('#hero-replay').addEventListener('click', () => $('#hero').replay());
+
+    // Playground
+    const pg = $('#pg');
+    const ctl = { cursors: $('#c-cursors'), speed: $('#c-speed'), linger: $('#c-linger'), sound: $('#c-sound'), labels: $('#c-labels') };
+    const sync = () => {
+      pg.cursors = ctl.cursors.value; pg.speed = ctl.speed.value; pg.linger = ctl.linger.value;
+      pg.sound = ctl.sound.checked; pg.hideLabels = !ctl.labels.checked;
+      $('#o-cursors').textContent = ctl.cursors.value; $('#o-speed').textContent = ctl.speed.value + '×'; $('#o-linger').textContent = ctl.linger.value + 'ms';
+      const attrs = [`cursors="${ctl.cursors.value}"`];
+      if (ctl.speed.value !== '1') attrs.push(`speed="${ctl.speed.value}"`);
+      if (ctl.linger.value !== '2500') attrs.push(`linger="${ctl.linger.value}"`);
+      if (ctl.sound.checked) attrs.push('sound');
+      if (!ctl.labels.checked) attrs.push('hide-labels');
+      $('#pg-code').innerHTML = hl(`<cursor-swarm ${attrs.join(' ')}>\n  \x3C!-- your section -->\n</cursor-swarm>`);
+    };
+    Object.values(ctl).forEach((i) => i.addEventListener('input', sync));
+    sync();
+    $('#pg-replay').addEventListener('click', () => pg.replay());
+    $('#pg-finish').addEventListener('click', () => pg.finish());
+
+    // Install tabs
+    const snippets = {
+      html: `\x3C!-- 1. Load it (or: npm i cursor-swarm) -->
+\x3Cscript type="module" src="https://cdn.jsdelivr.net/npm/cursor-swarm/dist/cursor-swarm.js">\x3C/script>
+
+\x3C!-- 2. Wrap anything -->
+<cursor-swarm cursors="6" sound>
+  <section class="hero">
+    <h1>Hello, world</h1>
+    <p>Built live by a crowd of cursors.</p>
+  </section>
+</cursor-swarm>`,
+      react: `// npm i cursor-swarm
+import { CursorSwarm } from 'cursor-swarm/react';
+
+export default function Hero() {
+  return (
+    <CursorSwarm cursors={6} speed={1.5} onComplete={() => console.log('built!')}>
+      <section className="hero">
+        <h1>Hello, world</h1>
+      </section>
+    </CursorSwarm>
+  );
+}`,
+      vue: `\x3C!-- vite.config: vue({ template: { compilerOptions: { isCustomElement: (t) => t === 'cursor-swarm' } } }) -->
+\x3Cscript setup>
+import 'cursor-swarm';
+\x3C/script>
+
+<template>
+  <cursor-swarm cursors="6" trigger="visible">
+    <section class="hero"><h1>Hello, world</h1></section>
+  </cursor-swarm>
+</template>`,
+      svelte: `\x3Cscript>
+  import 'cursor-swarm';
+\x3C/script>
+
+<cursor-swarm cursors="6" scope="all">
+  <section class="hero"><h1>Hello, world</h1></section>
+</cursor-swarm>`,
+    };
+    const tabs = document.querySelectorAll('#code-tabs [data-tab]');
+    const show = (k) => { tabs.forEach((b) => b.setAttribute('aria-selected', String(b.dataset.tab === k))); $('#code-out').innerHTML = hl(snippets[k]); };
+    tabs.forEach((b) => b.addEventListener('click', () => show(b.dataset.tab)));
+    show('html');
+
+    // Copy buttons
+    document.addEventListener('click', async (e) => {
+      const b = e.target.closest('[data-copy],[data-copy-from]');
+      if (!b) return;
+      const text = b.dataset.copy ?? document.getElementById(b.dataset.copyFrom).textContent;
+      try { await navigator.clipboard.writeText(text); const t = b.textContent; b.textContent = 'Copied'; setTimeout(() => (b.textContent = t), 1200); } catch {}
+    });
+  </script>
+</body>
+</html>
