@@ -122,6 +122,13 @@
     td code { font: 13px var(--mono); background: var(--soft); padding: 2px 6px; border-radius: 6px; }
     h3.api { margin: 36px 0 12px; font-size: 18px; }
 
+    .show { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+    .show a { display: block; text-decoration: none; border: 1px solid var(--line); border-radius: 18px; overflow: hidden; background: var(--card); transition: transform .2s ease, box-shadow .2s ease; }
+    .show a:hover { transform: translateY(-3px); box-shadow: 0 18px 40px rgba(20,20,40,.12); }
+    .show img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-bottom: 1px solid var(--line); }
+    .show div { display: flex; justify-content: space-between; align-items: center; padding: 14px 18px; font-weight: 600; }
+    .show span { color: var(--muted); font-weight: 500; font-size: 14px; }
+    @media (max-width: 860px) { .show { grid-template-columns: 1fr; } }
     footer { border-top: 1px solid var(--line); padding: 36px 0 60px; color: var(--muted); font-size: 14px; }
     footer .wrap { display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
 
@@ -139,7 +146,7 @@
   <nav data-swarm-ignore>
     <div class="wrap">
       <a class="logo" href="#"><svg width="20" height="20" viewBox="0 0 24 24"><path d="M3.5 2.5 L3.5 19.2 L8.1 15.1 L11.2 21.8 L14.3 20.4 L11.3 13.8 L17.6 13.8 Z" fill="#7C5CFF" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/></svg>cursor-swarm</a>
-      <div class="links"><a href="#playground">Playground</a><a href="#install">Install</a><a href="#api">API</a></div>
+      <div class="links"><a href="#showcase">Showcase</a><a href="#playground">Playground</a><a href="#install">Install</a><a href="#api">API</a></div>
       <a class="btn sm" href="https://github.com/Ricco-Mallick/Swarm-Cursor-component" target="_blank" rel="noopener">★ Star on GitHub</a>
     </div>
   </nav>
@@ -159,6 +166,20 @@
       </div>
     </header>
   </cursor-swarm>
+
+  <section id="showcase" data-swarm-ignore>
+    <div class="wrap">
+      <div class="eyebrow">Showcase</div>
+      <h2>Same component, any style.</h2>
+      <p class="sub">Four made-up sites in four popular styles. Every page is plain HTML and CSS wrapped in one <code>&lt;cursor-swarm&gt;</code> tag. Open one and watch it build.</p>
+      <div class="show">
+        <a href="examples/saas.html"><img src="examples/thumbs/saas.jpg" alt="Dark AI SaaS landing page" loading="lazy" /><div>Lumora <span>AI SaaS · dark</span></div></a>
+        <a href="examples/editorial.html"><img src="examples/thumbs/editorial.jpg" alt="Editorial design studio site" loading="lazy" /><div>Maison Ardent <span>Editorial · Awwwards style</span></div></a>
+        <a href="examples/product.html"><img src="examples/thumbs/product.jpg" alt="Minimal product launch page" loading="lazy" /><div>Kōen Air <span>Product launch · minimal</span></div></a>
+        <a href="examples/agency.html"><img src="examples/thumbs/agency.jpg" alt="Brutalist agency site" loading="lazy" /><div>BLOK® <span>Agency · brutalist</span></div></a>
+      </div>
+    </div>
+  </section>
 
   <section id="playground">
     <div class="wrap">

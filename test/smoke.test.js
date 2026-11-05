@@ -67,3 +67,17 @@ test('playground: replay, finish, scroll-gated section and reduced motion', asyn
   assert.equal(await rm.$eval('#hero', (h) => h.state), 'done');
   await ctx.close();
 });
+
+test('showcase examples build cleanly', async () => {
+  for (const name of ['saas', 'editorial', 'product', 'agency']) {
+    const page = await browser.newPage({ viewport: { width: 1280, height: 720 } });
+    const errors = [];
+    page.on('pageerror', (e) => errors.push(e.message));
+    await page.goto(`http://localhost:${PORT}/examples/${name}.html`);
+    await page.waitForFunction(() => document.querySelector('cursor-swarm').state === 'building');
+    await page.evaluate(() => document.querySelector('cursor-swarm').finish());
+    assert.equal(await hiddenCount(page, 'cursor-swarm'), 0, name);
+    assert.deepEqual(errors, [], name);
+    await page.close();
+  }
+});

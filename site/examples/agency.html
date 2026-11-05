@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>BLOK® · cursor-swarm showcase</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Archivo+Black&display=swap" rel="stylesheet" />
+<script type="module" src="../cursor-swarm.js"></script>
+<style>
+  cursor-swarm:not(:defined) { visibility: hidden; }
+  * { box-sizing: border-box; }
+  body { margin: 0; min-height: 100vh; background: #e4ff3a; color: #0a0a0a; font: 15px/1.45 "Space Grotesk", system-ui, sans-serif; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  .wrap { padding: 0 36px; }
+  nav { display: flex; align-items: center; gap: 12px; height: 70px; }
+  .logo { font: 26px "Archivo Black", sans-serif; letter-spacing: -.03em; }
+  .pill { border: 2px solid #0a0a0a; border-radius: 999px; padding: 6px 16px; font-weight: 500; font-size: 14px; background: #e4ff3a; }
+  nav .pill:first-of-type { margin-left: auto; }
+  .pill.k { background: #0a0a0a; color: #e4ff3a; }
+  h1 { font: 148px/.84 "Archivo Black", sans-serif; letter-spacing: -.06em; margin: 18px 0 0; text-transform: uppercase; }
+  .row { display: grid; grid-template-columns: 1fr 1fr 1fr 1.1fr; gap: 16px; margin-top: 28px; align-items: stretch; }
+  .card { border: 2px solid #0a0a0a; border-radius: 22px; padding: 16px 18px; display: flex; flex-direction: column; justify-content: space-between; min-height: 190px; box-shadow: 6px 6px 0 #0a0a0a; }
+  .card h3 { margin: 0; font-size: 22px; letter-spacing: -.03em; }
+  .card p { margin: 0; font-size: 13.5px; }
+  .c1 { background: #ff5cae; } .c2 { background: #6c5cff; color: #fff; } .c3 { background: #fff; }
+  .c2 h3, .c2 p { color: #fff; }
+  .big { background: #0a0a0a; color: #e4ff3a; }
+  .big h3 { font-size: 56px; line-height: .9; letter-spacing: -.05em; font-family: "Archivo Black", sans-serif; }
+  .big p { color: #e4ff3a; }
+  .tag { align-self: flex-start; font-size: 12px; font-weight: 700; border: 2px solid currentColor; border-radius: 999px; padding: 2px 10px; }
+  .sticker { position: absolute; right: 70px; top: 120px; width: 150px; height: 150px; }
+</style>
+</head>
+<body>
+<cursor-swarm trigger="load" scope="all" cursors="8" speed="1.35" colors="#0A0A0A,#FF2E93,#6C5CFF,#FF7A00,#00B37A,#0A84FF,#E0115F,#7A00FF" names="Dex,Rio,Kim,Ola,Bo,Pip,Vic,Zed">
+  <div class="wrap" style="position:relative">
+    <nav>
+      <span class="logo">BLOK®</span>
+      <span class="pill">Work</span><span class="pill">Services</span><span class="pill">About</span><span class="pill k">Let's talk →</span>
+    </nav>
+    <h1>We make<br />loud web.</h1>
+    <img class="sticker" alt="" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 2 L61 18 L80 12 L80 31 L98 38 L86 54 L96 71 L77 75 L73 94 L56 86 L42 98 L35 80 L15 82 L19 63 L2 52 L17 39 L11 20 L31 21 Z' fill='%230a0a0a'/%3E%3Ctext x='50' y='47' font-family='Arial Black,Arial' font-weight='900' font-size='13' fill='%23e4ff3a' text-anchor='middle'%3EAWARD%3C/text%3E%3Ctext x='50' y='63' font-family='Arial Black,Arial' font-weight='900' font-size='13' fill='%23e4ff3a' text-anchor='middle'%3EWINNING%3C/text%3E%3C/svg%3E" />
+    <div class="row">
+      <div class="card c1"><span class="tag">01 · Brand</span><div><h3>Identities that refuse to be beige.</h3></div></div>
+      <div class="card c2"><span class="tag">02 · Web</span><div><h3>Sites people screenshot.</h3></div></div>
+      <div class="card c3"><span class="tag">03 · Motion</span><div><h3>Everything moves. On purpose.</h3></div></div>
+      <div class="card big"><h3>48 awards.</h3><p>0 boring launches. Based in Berlin &amp; online.</p></div>
+    </div>
+  </div>
+</cursor-swarm>
+<div data-swarm-ignore style="position:fixed;right:16px;bottom:16px;z-index:2147483600;display:flex;gap:8px;font:600 13px/1 Inter,system-ui,sans-serif">
+  <button type="button" onclick="document.querySelector('cursor-swarm').replay()" style="all:unset;cursor:pointer;background:#0b0b12;color:#fff;padding:10px 14px;border-radius:999px;box-shadow:0 6px 20px rgba(0,0,0,.25)">↻ Replay</button>
+  <a href="../#showcase" style="text-decoration:none;background:#fff;color:#0b0b12;padding:10px 14px;border-radius:999px;box-shadow:0 6px 20px rgba(0,0,0,.25)">cursor-swarm ↗</a>
+</div>
+</body>
+</html>
