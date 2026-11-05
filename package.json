@@ -40,7 +40,7 @@
   },
   "keywords": ["web-component", "custom-element", "cursor", "multiplayer", "animation", "react", "ui", "landing-page", "figma", "collaboration"],
   "repository": { "type": "git", "url": "git+https://github.com/Ricco-Mallick/Swarm-Cursor-component.git" },
-  "homepage": "https://ricco-mallick.github.io/Swarm-Cursor-component/",
+  "homepage": "https://ricco.codes/Swarm-Cursor-component/",
   "bugs": "https://github.com/Ricco-Mallick/Swarm-Cursor-component/issues",
   "author": "Ricco Mallick",
   "license": "MIT"

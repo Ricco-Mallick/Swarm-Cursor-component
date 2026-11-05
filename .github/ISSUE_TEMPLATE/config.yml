@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Live demo & docs
+    url: https://ricco.codes/Swarm-Cursor-component/
+    about: Try every option in the playground before opening an issue.
