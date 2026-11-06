@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Maison Ardent · cursor-swarm showcase</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet" />
+<script type="module" src="../cursor-swarm.js"></script>
+<style>
+  cursor-swarm:not(:defined) { visibility: hidden; }
+  * { box-sizing: border-box; }
+  body { margin: 0; min-height: 100vh; background: #efeae1; color: #1b1a17; font: 14px/1.5 "Inter Tight", system-ui, sans-serif; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  .wrap { padding: 0 40px; }
+  header { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; height: 64px; border-bottom: 1px solid #1b1a17; font-size: 12.5px; text-transform: uppercase; letter-spacing: .08em; }
+  header .brand { font: italic 26px "Instrument Serif", serif; text-transform: none; letter-spacing: -.01em; }
+  header .r { justify-self: end; display: flex; gap: 26px; }
+  .hero { display: grid; grid-template-columns: 1.35fr 1fr; gap: 40px; padding: 34px 0 26px; align-items: end; }
+  h1 { font: 400 112px/.9 "Instrument Serif", serif; letter-spacing: -.035em; margin: 0; }
+  h1 em { font-style: italic; color: #b5462b; }
+  .intro { max-width: 340px; font-size: 15px; color: #4a463e; }
+  .meta { display: flex; gap: 22px; margin-top: 18px; font-size: 11.5px; text-transform: uppercase; letter-spacing: .1em; }
+  .meta b { display: block; font: 400 34px "Instrument Serif", serif; letter-spacing: -.02em; text-transform: none; color: #1b1a17; }
+  .grid { display: grid; grid-template-columns: 1.2fr .8fr 1fr; gap: 18px; padding-top: 8px; }
+  .work img { width: 100%; height: 220px; object-fit: cover; display: block; border-radius: 2px; }
+  .work:nth-child(2) img { height: 220px; }
+  .cap { display: flex; justify-content: space-between; margin-top: 9px; font-size: 12.5px; }
+  .cap span:last-child { color: #7a7468; }
+  .ticker { display: flex; justify-content: space-between; margin-top: 22px; padding: 12px 0; border-top: 1px solid #1b1a17; font: italic 22px "Instrument Serif", serif; }
+</style>
+</head>
+<body>
+<cursor-swarm trigger="load" scope="all" cursors="6" speed="1.3" colors="#B5462B,#1B1A17,#3D6B57,#C99A2E,#5A4FCF,#D9776A" names="Elise,Noor,Théo,Ines,Jun,Oskar">
+  <div class="wrap">
+    <header>
+      <span>Index · Work · Studio</span>
+      <span class="brand">Maison Ardent</span>
+      <span class="r"><span>Journal</span><span>Contact ↗</span></span>
+    </header>
+    <section class="hero">
+      <h1>We shape <em>quiet</em> brands for a loud world.</h1>
+      <div>
+        <p class="intro">An independent design studio in Lisbon working on identity, digital products and spaces for people who make things slowly and well.</p>
+        <div class="meta"><span><b>14</b>Years</span><span><b>120+</b>Projects</span><span><b>9</b>Awards</span></div>
+      </div>
+    </section>
+    <section class="grid">
+      <figure class="work" style="margin:0"><img alt="" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 300'%3E%3Crect width='600' height='300' fill='%23b5462b'/%3E%3Ccircle cx='430' cy='150' r='118' fill='%23efeae1'/%3E%3Ccircle cx='430' cy='150' r='70' fill='%231b1a17'/%3E%3Crect x='60' y='60' width='160' height='180' fill='%23c99a2e'/%3E%3C/svg%3E" /><figcaption class="cap"><span>Ondina Ceramics, identity</span><span>2026</span></figcaption></figure>
+      <figure class="work" style="margin:0"><img alt="" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%233d6b57'/%3E%3Cpath d='M0 300 L200 60 L400 300Z' fill='%23efeae1'/%3E%3Cpath d='M120 300 L200 200 L280 300Z' fill='%231b1a17'/%3E%3C/svg%3E" /><figcaption class="cap"><span>Serra, wayfinding</span><span>2025</span></figcaption></figure>
+      <figure class="work" style="margin:0"><img alt="" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 300'%3E%3Crect width='500' height='300' fill='%231b1a17'/%3E%3Crect x='40' y='40' width='200' height='220' fill='%235a4fcf'/%3E%3Crect x='260' y='40' width='200' height='105' fill='%23d9776a'/%3E%3Crect x='260' y='155' width='200' height='105' fill='%23efeae1'/%3E%3C/svg%3E" /><figcaption class="cap"><span>Atlas Review, digital</span><span>2025</span></figcaption></figure>
+    </section>
+    <div class="ticker"><span>Identity</span><span>·</span><span>Digital</span><span>·</span><span>Spaces</span><span>·</span><span>Type</span><span>·</span><span>Motion</span></div>
+  </div>
+</cursor-swarm>
+<div data-swarm-ignore style="position:fixed;right:16px;bottom:16px;z-index:2147483600;display:flex;gap:8px;font:600 13px/1 Inter,system-ui,sans-serif">
+  <button type="button" onclick="document.querySelector('cursor-swarm').replay()" style="all:unset;cursor:pointer;background:#0b0b12;color:#fff;padding:10px 14px;border-radius:999px;box-shadow:0 6px 20px rgba(0,0,0,.25)">↻ Replay</button>
+  <a href="../#showcase" style="text-decoration:none;background:#fff;color:#0b0b12;padding:10px 14px;border-radius:999px;box-shadow:0 6px 20px rgba(0,0,0,.25)">cursor-swarm ↗</a>
+</div>
+</body>
+</html>

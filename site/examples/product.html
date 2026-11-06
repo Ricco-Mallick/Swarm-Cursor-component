@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Kōen Air · cursor-swarm showcase</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<script type="module" src="../cursor-swarm.js"></script>
+<style>
+  cursor-swarm:not(:defined) { visibility: hidden; }
+  * { box-sizing: border-box; }
+  body { margin: 0; min-height: 100vh; background: #f5f5f7; color: #1d1d1f; font: 15px/1.5 Inter, -apple-system, system-ui, sans-serif; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  nav { display: flex; justify-content: center; gap: 34px; height: 46px; align-items: center; font-size: 12.5px; color: #424245; background: rgba(255,255,255,.7); border-bottom: 1px solid #e3e3e8; }
+  nav b { color: #1d1d1f; font-weight: 600; }
+  .sub { display: flex; align-items: center; max-width: 1040px; margin: 0 auto; height: 52px; padding: 0 24px; border-bottom: 1px solid #e3e3e8; }
+  .sub strong { font-size: 20px; font-weight: 600; letter-spacing: -.02em; }
+  .sub .r { margin-left: auto; display: flex; gap: 20px; align-items: center; font-size: 12.5px; color: #424245; }
+  .buy { background: #0071e3; color: #fff; border-radius: 999px; padding: 5px 13px; font-size: 12.5px; }
+  .hero { display: grid; grid-template-columns: 1fr 1fr; max-width: 1040px; margin: 0 auto; padding: 30px 24px 0; align-items: center; gap: 30px; }
+  .eyebrow { color: #bf4800; font-weight: 600; font-size: 15px; }
+  h1 { font-size: 66px; line-height: 1.02; letter-spacing: -.04em; margin: 8px 0 14px; font-weight: 700; }
+  .lead { font-size: 19px; color: #424245; max-width: 420px; margin: 0 0 22px; }
+  .price { display: flex; align-items: center; gap: 18px; }
+  .price .buy { font-size: 15px; padding: 10px 20px; }
+  .price a { color: #0066cc; font-size: 15px; }
+  .shot { width: 100%; height: 380px; display: block; }
+  .specs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; max-width: 1040px; margin: 16px auto 0; padding: 0 24px; }
+  .spec { background: #fff; border-radius: 18px; padding: 16px 18px; }
+  .spec b { display: block; font-size: 26px; letter-spacing: -.03em; }
+  .spec span { color: #6e6e73; font-size: 13px; }
+</style>
+</head>
+<body>
+<cursor-swarm trigger="load" scope="all" cursors="6" speed="1.3" colors="#0071E3,#BF4800,#1D1D1F,#34C759,#AF52DE,#FF375F">
+  <nav><span>Store</span><span>Audio</span><span>Wearables</span><span>Home</span><span>Support</span></nav>
+  <div class="sub"><strong>Kōen Air</strong><div class="r"><span>Overview</span><span>Tech specs</span><span class="buy">Buy</span></div></div>
+  <section class="hero">
+    <div>
+      <div class="eyebrow">New</div>
+      <h1>Hear everything. Miss nothing.</h1>
+      <p class="lead">Studio-grade sound, adaptive noise cancelling and 60 hours of battery, in headphones that weigh less than your phone.</p>
+      <div class="price"><span class="buy">Buy · $349</span><a>Watch the film ›</a></div>
+    </div>
+    <img class="shot" alt="" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 400'%3E%3Cdefs%3E%3ClinearGradient id='b' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop stop-color='%23fdfdfd'/%3E%3Cstop offset='1' stop-color='%23c9c9cf'/%3E%3C/linearGradient%3E%3ClinearGradient id='c' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop stop-color='%23e8e8ec'/%3E%3Cstop offset='1' stop-color='%23a9a9b2'/%3E%3C/linearGradient%3E%3CradialGradient id='s' cx='.5' cy='.5' r='.5'%3E%3Cstop stop-color='%23000' stop-opacity='.18'/%3E%3Cstop offset='1' stop-color='%23000' stop-opacity='0'/%3E%3C/radialGradient%3E%3C/defs%3E%3Cellipse cx='250' cy='372' rx='170' ry='18' fill='url(%23s)'/%3E%3Cpath d='M118 250 C110 110 180 48 250 48 C320 48 390 110 382 250' fill='none' stroke='url(%23c)' stroke-width='26' stroke-linecap='round'/%3E%3Cpath d='M118 250 C110 110 180 48 250 48 C320 48 390 110 382 250' fill='none' stroke='%23fff' stroke-opacity='.6' stroke-width='4' stroke-linecap='round' transform='translate(0 -8)'/%3E%3Crect x='70' y='215' width='100' height='150' rx='46' fill='url(%23b)' stroke='%23b8b8c0'/%3E%3Crect x='330' y='215' width='100' height='150' rx='46' fill='url(%23b)' stroke='%23b8b8c0'/%3E%3Crect x='86' y='238' width='68' height='104' rx='32' fill='%23e9e9ee'/%3E%3Crect x='346' y='238' width='68' height='104' rx='32' fill='%23e9e9ee'/%3E%3C/svg%3E" />
+  </section>
+  <section class="specs">
+    <div class="spec"><b>60 hrs</b><span>Battery life</span></div>
+    <div class="spec"><b>2× ANC</b><span>Adaptive noise cancelling</span></div>
+    <div class="spec"><b>212 g</b><span>Lighter than ever</span></div>
+    <div class="spec"><b>Spatial</b><span>Head-tracked audio</span></div>
+  </section>
+</cursor-swarm>
+<div data-swarm-ignore style="position:fixed;right:16px;bottom:16px;z-index:2147483600;display:flex;gap:8px;font:600 13px/1 Inter,system-ui,sans-serif">
+  <button type="button" onclick="document.querySelector('cursor-swarm').replay()" style="all:unset;cursor:pointer;background:#0b0b12;color:#fff;padding:10px 14px;border-radius:999px;box-shadow:0 6px 20px rgba(0,0,0,.25)">↻ Replay</button>
+  <a href="../#showcase" style="text-decoration:none;background:#fff;color:#0b0b12;padding:10px 14px;border-radius:999px;box-shadow:0 6px 20px rgba(0,0,0,.25)">cursor-swarm ↗</a>
+</div>
+</body>
+</html>

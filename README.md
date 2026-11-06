@@ -24,6 +24,16 @@ Wrap any section in `<cursor-swarm>`. When it scrolls into view, the cursors fly
 
 It reads your real DOM and CSS, so you don't need any config, extra markup or screenshots.
 
+## Showcase
+
+The same component on four made-up sites in popular styles. Open one and watch it build:
+
+| [**Lumora**: AI SaaS](https://ricco.codes/Swarm-Cursor-component/examples/saas.html) | [**Maison Ardent**: editorial](https://ricco.codes/Swarm-Cursor-component/examples/editorial.html) |
+| --- | --- |
+| [![Lumora](site/examples/thumbs/saas.jpg)](https://ricco.codes/Swarm-Cursor-component/examples/saas.html) | [![Maison Ardent](site/examples/thumbs/editorial.jpg)](https://ricco.codes/Swarm-Cursor-component/examples/editorial.html) |
+| [**Kōen Air**: product launch](https://ricco.codes/Swarm-Cursor-component/examples/product.html) | [**BLOK®**: brutalist agency](https://ricco.codes/Swarm-Cursor-component/examples/agency.html) |
+| [![Kōen Air](site/examples/thumbs/product.jpg)](https://ricco.codes/Swarm-Cursor-component/examples/product.html) | [![BLOK](site/examples/thumbs/agency.jpg)](https://ricco.codes/Swarm-Cursor-component/examples/agency.html) |
+
 ## Quick start
 
 ### HTML / CDN
