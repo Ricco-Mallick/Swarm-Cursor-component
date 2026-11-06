@@ -34,6 +34,14 @@ The same component on four made-up sites in popular styles. Open one and watch i
 | [**Kōen Air**: product launch](https://ricco.codes/Swarm-Cursor-component/examples/product.html) | [**BLOK®**: brutalist agency](https://ricco.codes/Swarm-Cursor-component/examples/agency.html) |
 | [![Kōen Air](site/examples/thumbs/product.jpg)](https://ricco.codes/Swarm-Cursor-component/examples/product.html) | [![BLOK](site/examples/thumbs/agency.jpg)](https://ricco.codes/Swarm-Cursor-component/examples/agency.html) |
 
+Or wrap just one section of a page:
+
+| [**Tallyhouse**: fintech hero](https://ricco.codes/Swarm-Cursor-component/examples/hero-fintech.html) | [**Kiln**: dev tool hero](https://ricco.codes/Swarm-Cursor-component/examples/hero-devtool.html) |
+| --- | --- |
+| [![Tallyhouse](site/examples/thumbs/hero-fintech.jpg)](https://ricco.codes/Swarm-Cursor-component/examples/hero-fintech.html) | [![Kiln](site/examples/thumbs/hero-devtool.jpg)](https://ricco.codes/Swarm-Cursor-component/examples/hero-devtool.html) |
+| [**Plainform**: pricing](https://ricco.codes/Swarm-Cursor-component/examples/pricing.html) | [**Fieldnote**: bento features](https://ricco.codes/Swarm-Cursor-component/examples/features.html) |
+| [![Plainform](site/examples/thumbs/pricing.jpg)](https://ricco.codes/Swarm-Cursor-component/examples/pricing.html) | [![Fieldnote](site/examples/thumbs/features.jpg)](https://ricco.codes/Swarm-Cursor-component/examples/features.html) |
+
 ## Quick start
 
 ### HTML / CDN

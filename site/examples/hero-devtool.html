@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Kiln · cursor-swarm section example</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<script type="module" src="../cursor-swarm.js"></script>
+<style>
+  cursor-swarm:not(:defined) { visibility: hidden; }
+  * { box-sizing: border-box; }
+  body { margin: 0; min-height: 100vh; background: #0c0c0c; color: #ededed; font: 15px/1.55 Geist, system-ui, sans-serif; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 32px; }
+  nav { display: flex; align-items: center; gap: 28px; height: 64px; border-bottom: 1px solid #1f1f1f; font-size: 14px; color: #8f8f8f; }
+  .logo { display: flex; align-items: center; gap: 8px; color: #fff; font-weight: 600; font-size: 16px; }
+  .logo i { width: 16px; height: 16px; background: #ff6a2b; clip-path: polygon(50% 0, 100% 100%, 0 100%); display: block; }
+  nav .links { display: flex; gap: 24px; }
+  nav .r { margin-left: auto; display: flex; gap: 10px; }
+  .btn { display: inline-flex; align-items: center; height: 36px; padding: 0 14px; border-radius: 8px; font-weight: 500; font-size: 14px; border: 1px solid #2a2a2a; color: #ededed; }
+  .btn.p { background: #ededed; color: #0c0c0c; border-color: #ededed; }
+  .hero { text-align: center; padding: 64px 0 36px; }
+  .ann { display: inline-flex; gap: 8px; font-size: 13px; color: #a1a1a1; border: 1px solid #262626; border-radius: 999px; padding: 4px 12px 4px 4px; }
+  .ann b { background: #ff6a2b; color: #0c0c0c; border-radius: 999px; padding: 0 8px; font-weight: 600; }
+  h1 { font-size: 66px; line-height: 1.02; letter-spacing: -.05em; font-weight: 700; margin: 22px auto 16px; max-width: 780px; }
+  .lead { color: #a1a1a1; font-size: 18px; max-width: 540px; margin: 0 auto 28px; }
+  .ctas { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+  .cmd { display: inline-flex; align-items: center; gap: 14px; height: 44px; padding: 0 16px; border-radius: 8px; border: 1px solid #2a2a2a; background: #141414; font: 14px "Geist Mono", monospace; color: #d4d4d4; }
+  .cmd span { color: #6b6b6b; }
+  .ctas .btn.p { height: 44px; padding: 0 18px; }
+  .term { max-width: 820px; margin: 44px auto 0; text-align: left; border: 1px solid #262626; border-radius: 12px; background: #111; overflow: hidden; }
+  .term .bar { display: flex; gap: 7px; padding: 12px 14px; border-bottom: 1px solid #1f1f1f; }
+  .term .bar i { width: 10px; height: 10px; border-radius: 50%; background: #2e2e2e; display: block; }
+  .term pre { margin: 0; padding: 18px 20px; font: 13.5px/1.75 "Geist Mono", monospace; color: #bdbdbd; white-space: pre-wrap; }
+  .g { color: #4ade80; } .o { color: #ff6a2b; } .d { color: #5c5c5c; }
+  .logos { display: flex; justify-content: center; gap: 48px; margin: 40px 0 20px; color: #5c5c5c; font-weight: 600; font-size: 17px; letter-spacing: -.02em; flex-wrap: wrap; }
+  @media (max-width: 760px) {
+    body { padding-bottom: 72px; }
+    .wrap { padding: 0 18px; }
+    nav { gap: 16px; }
+    nav .links, nav .r .btn:not(.p) { display: none; }
+    .hero { padding: 40px 0 28px; }
+    h1 { font-size: 42px; }
+    .lead { font-size: 16px; }
+    .cmd { font-size: 12.5px; }
+    .term pre { font-size: 11.5px; padding: 14px; }
+    .logos { gap: 14px 28px; font-size: 15px; }
+  }
+</style>
+</head>
+<body>
+<cursor-swarm trigger="load" scope="all" cursors="7" speed="1.35" colors="#FF6A2B,#4ADE80,#60A5FA,#F472B6,#FACC15,#A78BFA,#F87171" names="sam,lee,ola,kit,ren,dax,ivo">
+  <div class="wrap">
+    <nav>
+      <span class="logo"><i></i>Kiln</span>
+      <span class="links"><span>Docs</span><span>Templates</span><span>Pricing</span><span>Blog</span></span>
+      <span class="r"><span class="btn">Log in</span><span class="btn p">Deploy</span></span>
+    </nav>
+    <section class="hero">
+      <span class="ann"><b>v2</b>Edge previews are now 3× faster</span>
+      <h1>A preview URL for every branch you push.</h1>
+      <p class="lead">Kiln builds each pull request in seconds and posts a live link your whole team can review. No YAML, no waiting.</p>
+      <div class="ctas"><span class="cmd"><span>$</span>npx kiln deploy</span><span class="btn p">Start for free</span></div>
+      <div class="term">
+        <div class="bar"><i></i><i></i><i></i></div>
+<pre><span class="d">$</span> npx kiln deploy
+<span class="d">›</span> Detected framework <span class="o">Astro</span> · branch <span class="o">feat/pricing-page</span>
+<span class="d">›</span> Installing dependencies  <span class="g">✓ 2.1s</span>
+<span class="d">›</span> Building 48 routes       <span class="g">✓ 4.7s</span>
+<span class="d">›</span> Uploading to 32 regions  <span class="g">✓ 0.9s</span>
+<span class="g">✓ Ready</span>  https://feat-pricing-page.acme.kiln.app</pre>
+      </div>
+      <div class="logos"><span>Northwind</span><span>Halcyon</span><span>Parcel&amp;Co</span><span>Driftwood</span><span>Mesa</span></div>
+    </section>
+  </div>
+</cursor-swarm>
+<div data-swarm-ignore style="position:fixed;right:16px;bottom:16px;z-index:2147483600;display:flex;gap:8px;font:600 13px/1 Inter,system-ui,sans-serif">
+  <button type="button" onclick="document.querySelector('cursor-swarm').replay()" style="all:unset;cursor:pointer;background:#0b0b12;color:#fff;padding:10px 14px;border-radius:999px;box-shadow:0 6px 20px rgba(0,0,0,.25)">↻ Replay</button>
+  <a href="../#showcase" style="text-decoration:none;background:#fff;color:#0b0b12;padding:10px 14px;border-radius:999px;box-shadow:0 6px 20px rgba(0,0,0,.25)">cursor-swarm ↗</a>
+</div>
+</body>
+</html>

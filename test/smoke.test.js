@@ -69,7 +69,7 @@ test('playground: replay, finish, scroll-gated section and reduced motion', asyn
 });
 
 test('showcase examples build cleanly', async () => {
-  for (const name of ['saas', 'editorial', 'product', 'agency']) {
+  for (const name of ['saas', 'editorial', 'product', 'agency', 'hero-fintech', 'hero-devtool', 'pricing', 'features']) {
     const page = await browser.newPage({ viewport: { width: 1280, height: 720 } });
     const errors = [];
     page.on('pageerror', (e) => errors.push(e.message));
