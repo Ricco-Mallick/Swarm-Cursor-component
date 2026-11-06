@@ -43,6 +43,23 @@
   .st.a { background: rgba(34,211,238,.12); color: #67e8f9; } .st.b { background: rgba(124,92,255,.15); color: #b8a6ff; } .st.c { background: rgba(74,222,128,.12); color: #86efac; }
   .av { width: 22px; height: 22px; border-radius: 50%; justify-self: end; }
   .logos { display: flex; justify-content: center; gap: 56px; margin: 40px 0 10px; color: #5f5f73; font-weight: 700; letter-spacing: -.02em; font-size: 19px; }
+  @media (max-width: 760px) {
+    body { padding-bottom: 72px; }
+    .wrap { padding: 0 18px; }
+    nav { gap: 16px; height: 58px; }
+    nav .links, nav .right .btn:not(.p) { display: none; }
+    .hero { padding: 26px 0 24px; }
+    h1 { font-size: 40px; }
+    .sub { font-size: 15.5px; }
+    .ctas { flex-wrap: wrap; }
+    .app { grid-template-columns: 1fr; margin-top: 28px; }
+    .side { flex-direction: row; align-items: center; gap: 2px; overflow-x: auto; white-space: nowrap; border-right: 0; border-bottom: 1px solid #1c1c26; padding: 10px 12px; }
+    .side .ws { margin: 0 10px 0 0; }
+    .main { padding: 12px 14px; }
+    .row { grid-template-columns: 58px 1fr; gap: 4px 10px; padding: 10px 4px; }
+    .row .st { grid-column: 2; }
+    .av { display: none; }
+  }
 </style>
 </head>
 <body>

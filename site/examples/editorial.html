@@ -27,6 +27,19 @@
   .cap { display: flex; justify-content: space-between; margin-top: 9px; font-size: 12.5px; }
   .cap span:last-child { color: #7a7468; }
   .ticker { display: flex; justify-content: space-between; margin-top: 22px; padding: 12px 0; border-top: 1px solid #1b1a17; font: italic 22px "Instrument Serif", serif; }
+  @media (max-width: 760px) {
+    body { padding-bottom: 72px; }
+    .wrap { padding: 0 18px; }
+    header { grid-template-columns: 1fr auto; }
+    header > span:first-child { display: none; }
+    header .r { gap: 16px; }
+    .hero { grid-template-columns: 1fr; gap: 22px; padding: 28px 0 24px; }
+    h1 { font-size: 58px; }
+    .intro { max-width: none; }
+    .grid { grid-template-columns: 1fr; gap: 22px; }
+    .work img, .work:nth-child(2) img { height: 200px; }
+    .ticker { flex-wrap: wrap; justify-content: center; gap: 4px 12px; font-size: 19px; }
+  }
 </style>
 </head>
 <body>
