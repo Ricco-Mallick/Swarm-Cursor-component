@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Plainform pricing · cursor-swarm section example</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<script type="module" src="../cursor-swarm.js"></script>
+<style>
+  cursor-swarm:not(:defined) { visibility: hidden; }
+  * { box-sizing: border-box; }
+  body { margin: 0; min-height: 100vh; background: #f4f5f8; color: #111322; font: 15px/1.55 Inter, system-ui, sans-serif; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 44px 32px 40px; }
+  .head { text-align: center; }
+  .eyebrow { font-size: 13px; font-weight: 600; color: #2f5bff; text-transform: uppercase; letter-spacing: .08em; }
+  h1 { font-size: 48px; line-height: 1.08; letter-spacing: -.035em; margin: 10px 0 12px; }
+  .sub { color: #5b6075; font-size: 17px; margin: 0 auto 22px; max-width: 520px; }
+  .toggle { display: inline-flex; background: #e6e8ef; border-radius: 999px; padding: 4px; font-size: 14px; font-weight: 500; }
+  .toggle span { padding: 7px 16px; border-radius: 999px; color: #5b6075; }
+  .toggle .on { background: #fff; color: #111322; box-shadow: 0 1px 3px rgba(17,19,34,.12); }
+  .toggle em { font-style: normal; color: #16a34a; font-size: 12px; margin-left: 4px; }
+  .plans { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 34px; align-items: stretch; }
+  .plan { background: #fff; border: 1px solid #e3e5ec; border-radius: 18px; padding: 26px; display: flex; flex-direction: column; }
+  .plan h3 { margin: 0; font-size: 17px; }
+  .plan p { margin: 6px 0 18px; color: #5b6075; font-size: 14px; }
+  .price { display: flex; align-items: baseline; gap: 4px; margin-bottom: 20px; }
+  .price b { font-size: 44px; letter-spacing: -.04em; }
+  .price span { color: #5b6075; font-size: 14px; }
+  .btn { display: flex; justify-content: center; align-items: center; height: 44px; border-radius: 10px; font-weight: 600; font-size: 14px; border: 1px solid #d5d8e2; color: #111322; margin-bottom: 22px; }
+  ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; font-size: 14px; }
+  li { display: flex; gap: 10px; }
+  li::before { content: "✓"; color: #2f5bff; font-weight: 700; }
+  .pop { background: #111322; color: #fff; border-color: #111322; position: relative; }
+  .pop p, .pop .price span { color: #a5a9bd; }
+  .pop .btn { background: #2f5bff; border-color: #2f5bff; color: #fff; }
+  .pop li::before { color: #8ea6ff; }
+  .badge { position: absolute; top: 22px; right: 22px; font-size: 12px; font-weight: 600; background: #2f5bff; color: #fff; border-radius: 999px; padding: 3px 10px; }
+  .foot { display: flex; justify-content: center; gap: 28px; margin-top: 28px; color: #5b6075; font-size: 14px; flex-wrap: wrap; }
+  @media (max-width: 860px) {
+    body { padding-bottom: 72px; }
+    .wrap { padding: 32px 18px 30px; }
+    h1 { font-size: 36px; }
+    .sub { font-size: 16px; }
+    .plans { grid-template-columns: 1fr; max-width: 440px; margin-left: auto; margin-right: auto; }
+    .foot { gap: 8px 20px; }
+  }
+</style>
+</head>
+<body>
+<cursor-swarm trigger="load" scope="all" cursors="6" speed="1.3" colors="#2F5BFF,#16A34A,#E11D48,#F59E0B,#7C3AED,#0891B2" names="Maya,Tom,Priya,Felix,Ines,Kofi">
+  <div class="wrap">
+    <div class="head">
+      <div class="eyebrow">Pricing</div>
+      <h1>Simple plans for forms of every size.</h1>
+      <p class="sub">Start free, upgrade when the responses roll in. Every plan includes unlimited forms.</p>
+      <div class="toggle"><span>Monthly</span><span class="on">Yearly <em>−20%</em></span></div>
+    </div>
+    <div class="plans">
+      <div class="plan">
+        <h3>Starter</h3><p>For side projects and quick surveys.</p>
+        <div class="price"><b>$0</b><span>/ month</span></div>
+        <span class="btn">Start free</span>
+        <ul><li>100 responses / month</li><li>Unlimited forms</li><li>Email notifications</li><li>Basic logic</li></ul>
+      </div>
+      <div class="plan pop">
+        <span class="badge">Most popular</span>
+        <h3>Pro</h3><p>For teams collecting real data.</p>
+        <div class="price"><b>$24</b><span>/ month</span></div>
+        <span class="btn">Try Pro free for 14 days</span>
+        <ul><li>10,000 responses / month</li><li>File uploads up to 1 GB</li><li>Custom domains &amp; branding</li><li>Payments and signatures</li><li>Webhooks &amp; 40+ integrations</li></ul>
+      </div>
+      <div class="plan">
+        <h3>Business</h3><p>For organisations with compliance needs.</p>
+        <div class="price"><b>$79</b><span>/ month</span></div>
+        <span class="btn">Talk to sales</span>
+        <ul><li>Unlimited responses</li><li>SSO and audit log</li><li>HIPAA &amp; GDPR tools</li><li>Priority support</li></ul>
+      </div>
+    </div>
+    <div class="foot"><span>✓ No card required</span><span>✓ Cancel anytime</span><span>✓ Free for non-profits</span></div>
+  </div>
+</cursor-swarm>
+<div data-swarm-ignore style="position:fixed;right:16px;bottom:16px;z-index:2147483600;display:flex;gap:8px;font:600 13px/1 Inter,system-ui,sans-serif">
+  <button type="button" onclick="document.querySelector('cursor-swarm').replay()" style="all:unset;cursor:pointer;background:#0b0b12;color:#fff;padding:10px 14px;border-radius:999px;box-shadow:0 6px 20px rgba(0,0,0,.25)">↻ Replay</button>
+  <a href="../#showcase" style="text-decoration:none;background:#fff;color:#0b0b12;padding:10px 14px;border-radius:999px;box-shadow:0 6px 20px rgba(0,0,0,.25)">cursor-swarm ↗</a>
+</div>
+</body>
+</html>

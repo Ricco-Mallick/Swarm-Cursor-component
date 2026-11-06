@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Tallyhouse · cursor-swarm section example</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=DM+Serif+Display&display=swap" rel="stylesheet" />
+<script type="module" src="../cursor-swarm.js"></script>
+<style>
+  cursor-swarm:not(:defined) { visibility: hidden; }
+  * { box-sizing: border-box; }
+  body { margin: 0; min-height: 100vh; background: #f6f3ec; color: #14211b; font: 15px/1.55 "DM Sans", system-ui, sans-serif; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  .wrap { max-width: 1160px; margin: 0 auto; padding: 0 32px; }
+  nav { display: flex; align-items: center; gap: 30px; height: 68px; font-size: 14px; color: #4b5a52; }
+  .logo { display: flex; align-items: center; gap: 9px; font: 700 18px "DM Sans", sans-serif; color: #14211b; letter-spacing: -.02em; }
+  .logo i { width: 20px; height: 20px; border-radius: 5px; background: #0f5132; display: block; }
+  nav .links { display: flex; gap: 26px; }
+  nav .r { margin-left: auto; display: flex; gap: 10px; align-items: center; }
+  .btn { display: inline-flex; align-items: center; height: 40px; padding: 0 16px; border-radius: 10px; font-weight: 500; font-size: 14px; border: 1px solid #d6d0c2; background: #fff; color: #14211b; }
+  .btn.p { background: #0f5132; color: #fff; border-color: #0f5132; }
+  .hero { display: grid; grid-template-columns: 1.05fr 1fr; gap: 56px; align-items: center; padding: 48px 0 40px; }
+  .tag { display: inline-block; font-size: 13px; font-weight: 500; color: #0f5132; background: #e1ecdf; border-radius: 999px; padding: 4px 12px; }
+  h1 { font: 400 68px/1.02 "DM Serif Display", serif; letter-spacing: -.02em; margin: 18px 0 18px; }
+  .lead { font-size: 18px; color: #4b5a52; max-width: 480px; margin: 0 0 26px; }
+  .form { display: flex; gap: 8px; max-width: 460px; }
+  .input { flex: 1; height: 46px; border: 1px solid #d6d0c2; border-radius: 10px; background: #fff; padding: 0 14px; display: flex; align-items: center; color: #8a958e; }
+  .form .btn { height: 46px; }
+  .proof { display: flex; gap: 28px; margin-top: 30px; font-size: 13px; color: #6b7770; }
+  .proof b { display: block; font: 400 28px "DM Serif Display", serif; color: #14211b; }
+  .inv { background: #fff; border: 1px solid #e3ddcf; border-radius: 18px; padding: 24px; box-shadow: 0 1px 0 #e3ddcf, 0 24px 48px -28px rgba(20,33,27,.35); }
+  .inv header { display: flex; justify-content: space-between; align-items: start; margin-bottom: 18px; }
+  .inv h3 { margin: 0; font-size: 18px; letter-spacing: -.01em; }
+  .inv small { color: #6b7770; font-size: 13px; }
+  .paid { font-size: 12px; font-weight: 700; color: #0f5132; border: 1.5px solid #0f5132; border-radius: 6px; padding: 3px 8px; letter-spacing: .06em; }
+  .line { display: grid; grid-template-columns: 1fr auto; padding: 11px 0; border-top: 1px solid #eee8dc; font-size: 14px; }
+  .line span:last-child { font-variant-numeric: tabular-nums; }
+  .total { display: flex; justify-content: space-between; align-items: baseline; margin-top: 8px; padding-top: 14px; border-top: 2px solid #14211b; font-weight: 700; }
+  .total b { font: 400 34px "DM Serif Display", serif; }
+  .sync { display: flex; gap: 10px; margin-top: 16px; }
+  .sync span { flex: 1; font-size: 12.5px; color: #4b5a52; background: #f6f3ec; border-radius: 8px; padding: 8px 10px; }
+  @media (max-width: 860px) {
+    body { padding-bottom: 72px; }
+    .wrap { padding: 0 18px; }
+    nav { gap: 16px; }
+    nav .links, nav .r .btn:not(.p) { display: none; }
+    .hero { grid-template-columns: 1fr; gap: 34px; padding: 26px 0 30px; }
+    h1 { font-size: 46px; }
+    .lead { font-size: 16.5px; }
+    .form { flex-direction: column; }
+    .form .input { flex: none; }
+    .proof { gap: 20px; }
+  }
+</style>
+</head>
+<body>
+<cursor-swarm trigger="load" scope="all" cursors="6" speed="1.3" colors="#0F5132,#C2410C,#1D4ED8,#A16207,#7C3AED,#DB2777" names="Ana,Ravi,June,Omar,Lise,Ben">
+  <div class="wrap">
+    <nav>
+      <span class="logo"><i></i>Tallyhouse</span>
+      <span class="links"><span>Product</span><span>Customers</span><span>Pricing</span></span>
+      <span class="r"><span class="btn">Sign in</span><span class="btn p">Get started</span></span>
+    </nav>
+    <section class="hero">
+      <div>
+        <span class="tag">New · Automatic bank reconciliation</span>
+        <h1>Close your books in an afternoon.</h1>
+        <p class="lead">Tallyhouse matches every transaction, chases unpaid invoices and hands your accountant a clean ledger at month end.</p>
+        <div class="form"><span class="input">you@company.com</span><span class="btn p">Start free trial</span></div>
+        <div class="proof"><span><b>4,200+</b>small businesses</span><span><b>11 hrs</b>saved each month</span><span><b>4.9★</b>on G2</span></div>
+      </div>
+      <div class="inv">
+        <header><div><h3>Invoice #1048</h3><small>Harbor &amp; Pine Studio · due Nov 30</small></div><span class="paid">PAID</span></header>
+        <div class="line"><span>Brand identity, phase 2</span><span>$4,800.00</span></div>
+        <div class="line"><span>Website build, 6 pages</span><span>$7,200.00</span></div>
+        <div class="line"><span>Photography licence</span><span>$650.00</span></div>
+        <div class="line"><span>VAT 20%</span><span>$2,530.00</span></div>
+        <div class="total"><span>Total</span><b>$15,180.00</b></div>
+        <div class="sync"><span>✓ Matched to bank</span><span>✓ Synced to ledger</span></div>
+      </div>
+    </section>
+  </div>
+</cursor-swarm>
+<div data-swarm-ignore style="position:fixed;right:16px;bottom:16px;z-index:2147483600;display:flex;gap:8px;font:600 13px/1 Inter,system-ui,sans-serif">
+  <button type="button" onclick="document.querySelector('cursor-swarm').replay()" style="all:unset;cursor:pointer;background:#0b0b12;color:#fff;padding:10px 14px;border-radius:999px;box-shadow:0 6px 20px rgba(0,0,0,.25)">↻ Replay</button>
+  <a href="../#showcase" style="text-decoration:none;background:#fff;color:#0b0b12;padding:10px 14px;border-radius:999px;box-shadow:0 6px 20px rgba(0,0,0,.25)">cursor-swarm ↗</a>
+</div>
+</body>
+</html>

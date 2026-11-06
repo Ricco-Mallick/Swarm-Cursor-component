@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Fieldnote features · cursor-swarm section example</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<script type="module" src="../cursor-swarm.js"></script>
+<style>
+  cursor-swarm:not(:defined) { visibility: hidden; }
+  * { box-sizing: border-box; }
+  body { margin: 0; min-height: 100vh; background: #fbfaf7; color: #1a1a1a; font: 15px/1.55 Manrope, system-ui, sans-serif; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 44px 32px 40px; }
+  .head { display: flex; justify-content: space-between; align-items: end; gap: 40px; margin-bottom: 28px; }
+  .eyebrow { font-size: 13px; font-weight: 700; color: #e8590c; }
+  h1 { font-size: 46px; line-height: 1.06; letter-spacing: -.04em; font-weight: 800; margin: 8px 0 0; max-width: 560px; }
+  .head p { color: #5f5f5f; max-width: 360px; margin: 0; font-size: 16px; }
+  .bento { display: grid; grid-template-columns: repeat(6, 1fr); grid-auto-rows: 200px; gap: 14px; }
+  .t { background: #fff; border: 1px solid #ebe8e1; border-radius: 18px; padding: 20px; display: flex; flex-direction: column; overflow: hidden; }
+  .t h3 { margin: 0 0 4px; font-size: 17px; letter-spacing: -.02em; }
+  .t p { margin: 0; color: #5f5f5f; font-size: 14px; }
+  .a { grid-column: span 4; grid-row: span 2; }
+  .b, .c { grid-column: span 2; }
+  .d, .e, .f { grid-column: span 2; }
+  .chart { margin-top: auto; display: flex; align-items: end; gap: 10px; height: 230px; padding-top: 20px; }
+  .chart i { flex: 1; background: #f1ede4; border-radius: 8px 8px 3px 3px; display: block; }
+  .chart i.hot { background: #e8590c; }
+  .keys { margin-top: auto; display: flex; gap: 8px; }
+  .keys span { min-width: 44px; height: 44px; border: 1px solid #dcd8cf; border-bottom-width: 3px; border-radius: 10px; display: grid; place-items: center; font-weight: 700; padding: 0 10px; background: #fbfaf7; }
+  .avs { margin-top: auto; display: flex; }
+  .avs span { width: 40px; height: 40px; border-radius: 50%; border: 3px solid #fff; margin-left: -10px; display: grid; place-items: center; color: #fff; font-weight: 700; font-size: 13px; }
+  .avs span:first-child { margin-left: 0; }
+  .big { margin-top: auto; font-size: 46px; font-weight: 800; letter-spacing: -.05em; }
+  .dark { background: #1a1a1a; color: #fff; border-color: #1a1a1a; }
+  .dark p { color: #a8a8a8; }
+  .apps { margin-top: auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+  .apps span { aspect-ratio: 1; border-radius: 10px; display: grid; place-items: center; color: #fff; font-weight: 800; font-size: 15px; }
+  @media (max-width: 860px) {
+    body { padding-bottom: 72px; }
+    .wrap { padding: 32px 18px 30px; }
+    .head { flex-direction: column; align-items: start; gap: 12px; }
+    h1 { font-size: 34px; }
+    .bento { grid-template-columns: 1fr 1fr; grid-auto-rows: auto; gap: 12px; }
+    .t { min-height: 170px; }
+    .a { grid-column: 1 / -1; grid-row: auto; }
+    .chart { height: 150px; }
+    .b, .c, .d, .e, .f { grid-column: span 1; }
+    .f { grid-column: 1 / -1; }
+    .big { font-size: 36px; }
+    .avs span { width: 34px; height: 34px; font-size: 11px; }
+  }
+</style>
+</head>
+<body>
+<cursor-swarm trigger="load" scope="all" cursors="6" speed="1.3" colors="#E8590C,#1A1A1A,#2563EB,#059669,#DB2777,#7C3AED" names="Hana,Luis,Wren,Abe,Sol,Nia">
+  <div class="wrap">
+    <div class="head">
+      <div><div class="eyebrow">Why Fieldnote</div><h1>Everything your research team needs, in one notebook.</h1></div>
+      <p>Capture interviews, tag insights and share findings without juggling five different tools.</p>
+    </div>
+    <div class="bento">
+      <div class="t a"><h3>Insights that add up</h3><p>Tag quotes across every interview and watch themes emerge week by week.</p>
+        <div class="chart"><i style="height:30%"></i><i style="height:42%"></i><i style="height:38%"></i><i style="height:55%"></i><i style="height:50%"></i><i style="height:68%"></i><i class="hot" style="height:92%"></i><i style="height:74%"></i></div>
+      </div>
+      <div class="t b"><h3>Keyboard first</h3><p>Tag a quote without leaving the transcript.</p><div class="keys"><span>⌘</span><span>K</span></div></div>
+      <div class="t c"><h3>Built for teams</h3><p>Live comments and shared tag libraries.</p><div class="avs"><span style="background:#e8590c">HL</span><span style="background:#2563eb">WR</span><span style="background:#059669">AB</span><span style="background:#db2777">SN</span><span style="background:#1a1a1a">+9</span></div></div>
+      <div class="t d dark"><h3>Auto transcripts</h3><p>In 38 languages, speaker-labelled.</p><div class="big">38</div></div>
+      <div class="t e"><h3>Private by default</h3><p>SOC 2 Type II, EU data residency.</p><div class="big">99.99%</div></div>
+      <div class="t f"><h3>Plays well with others</h3><p>Sync with the tools you already use.</p><div class="apps"><span style="background:#4a154b">S</span><span style="background:#0052cc">J</span><span style="background:#000">N</span><span style="background:#f24e1e">F</span></div></div>
+    </div>
+  </div>
+</cursor-swarm>
+<div data-swarm-ignore style="position:fixed;right:16px;bottom:16px;z-index:2147483600;display:flex;gap:8px;font:600 13px/1 Inter,system-ui,sans-serif">
+  <button type="button" onclick="document.querySelector('cursor-swarm').replay()" style="all:unset;cursor:pointer;background:#0b0b12;color:#fff;padding:10px 14px;border-radius:999px;box-shadow:0 6px 20px rgba(0,0,0,.25)">↻ Replay</button>
+  <a href="../#showcase" style="text-decoration:none;background:#fff;color:#0b0b12;padding:10px 14px;border-radius:999px;box-shadow:0 6px 20px rgba(0,0,0,.25)">cursor-swarm ↗</a>
+</div>
+</body>
+</html>
